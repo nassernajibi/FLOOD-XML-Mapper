@@ -18,7 +18,7 @@
       font-weight: 400;
       background: #f8f9fa;
     }
-    #map { height: 100%; width: 100%; z-index: 1; background: #e3f2fd; }
+    #map { height: 100%; width: 100%; z-index: 1; background: #111827; }
 
     .left-controls { 
       position: absolute; top: 20px; left: 20px; z-index: 1100; 
@@ -542,7 +542,7 @@ function updateMap() {
         const iso = ((f.properties.ISO_A3 && f.properties.ISO_A3 !== "-99") ? f.properties.ISO_A3 : f.properties.ADM0_A3) || NAME_TO_ISO[f.properties.ADMIN?.toLowerCase()];
         const rows = eventsByIso.get(iso)?.annual[yr] || [];
         let val = (rows.length > 0) ? (mod === 'ensemble' ? getStats(rows).med : rows.reduce((s,r) => s + (parseFloat(r[mod])||0), 0)) : 0;
-        return { fillColor: getColor(val), weight: 0.8, color: '#fff', fillOpacity: 0.85 };
+        return { fillColor: getColor(val), weight: 0.5, color: 'rgba(0, 0, 0, 0.4)', fillOpacity: 0.75 };
       },
       onEachFeature: (f, l) => {
         l.on({
