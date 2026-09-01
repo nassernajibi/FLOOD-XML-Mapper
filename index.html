@@ -482,11 +482,19 @@
   const worldBounds = L.latLngBounds([[-85, -270], [85, 270]]);
   map.setMaxBounds(worldBounds);
   map.options.maxBoundsViscosity = 1.0;
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-  maxZoom: 18,
-  opacity: 0.5, // Adjust transparency (0.0 to 1.0)
-  attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-}).addTo(map);
+
+  // 1. ADD THIS HERE: Create a custom pane for markers with a high z-index
+  map.createPane('markerPane');
+  map.getPane('markerPane').style.zIndex = 650;
+
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 18,
+    opacity: 0.5,
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+  }).addTo(map);
+
+  // 2. ADD THIS HERE: Make sure the eventMarkers LayerGroup is attached to the map
+  eventMarkers.addTo(map);
 
   const formatUSD = n => n ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact', maximumFractionDigits: 1 }).format(n) : "$0";
 
