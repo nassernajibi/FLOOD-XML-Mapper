@@ -505,7 +505,7 @@
   }
 
   async function init() {
-    const [geoRes, csvRes] = await Promise.all([fetch('./data/countries.geojson'), fetch('./data/DFO21_damages_wt_EMDAT21.csv')]);
+    const [geoRes, csvRes] = await Promise.all([fetch('./data/ne_10m_admin_0_countries.geojson'), fetch('./data/DFO21_damages_wt_EMDAT21.csv')]);
     countriesGeo = await geoRes.json();
     fullData = Papa.parse(await csvRes.text(), { header: true, skipEmptyLines: true }).data;
 
@@ -542,7 +542,7 @@ function updateMap() {
         const iso = ((f.properties.ISO_A3 && f.properties.ISO_A3 !== "-99") ? f.properties.ISO_A3 : f.properties.ADM0_A3) || NAME_TO_ISO[f.properties.ADMIN?.toLowerCase()];
         const rows = eventsByIso.get(iso)?.annual[yr] || [];
         let val = (rows.length > 0) ? (mod === 'ensemble' ? getStats(rows).med : rows.reduce((s,r) => s + (parseFloat(r[mod])||0), 0)) : 0;
-        return { fillColor: getColor(val), weight: 0.5, color: 'rgba(0, 0, 0, 0.4)', fillOpacity: 0.75 };
+        return { fillColor: getColor(val), weight: 0.3, color: 'rgba(0, 0, 0, 0.5)', fillOpacity: 0.82 };
       },
       onEachFeature: (f, l) => {
         l.on({
@@ -555,7 +555,7 @@ function updateMap() {
             refreshUI();
           },
           mouseover: e => {
-            e.target.setStyle({ weight: 2, color: '#1976d2' });
+            e.target.setStyle({ weight: 1.5, color: '#ffffff' });
           },
           mouseout: e => {
             window.gLayer.resetStyle(e.target);
