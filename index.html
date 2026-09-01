@@ -533,10 +533,11 @@
     renderLegend(); updateMap();
   }
 
-  function updateMap() {
+function updateMap() {
     if (window.gLayer) map.removeLayer(window.gLayer);
     const yr = parseInt(el('yearSelect').value), mod = el('modelSelect').value;
     window.gLayer = L.geoJson(countriesGeo, {
+      pane: 'overlayPane', // ADD THIS line to lock country fills below z-index 650
       style: f => {
         const iso = ((f.properties.ISO_A3 && f.properties.ISO_A3 !== "-99") ? f.properties.ISO_A3 : f.properties.ADM0_A3) || NAME_TO_ISO[f.properties.ADMIN?.toLowerCase()];
         const rows = eventsByIso.get(iso)?.annual[yr] || [];
@@ -585,7 +586,7 @@
     `; 
   }
 
-  function refreshUI() {
+function refreshUI() {
     if (!selectedIso) return;
     const entry = eventsByIso.get(selectedIso), mod = el('modelSelect').value;
     
@@ -599,7 +600,8 @@
           color: '#424242', 
           weight: 2, 
           fillColor: '#757575', 
-          fillOpacity: 0.7 
+          fillOpacity: 0.9,
+          pane: 'markerPane' // ADD THIS property here
         })
         .addTo(eventMarkers).bindPopup(`
           <div style="font-family: inherit;">
