@@ -508,7 +508,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.p
 
   async function init() {
     const [geoRes, csvRes] = await Promise.all([fetch('./data/ne_10m_admin_0_countries.geojson'), fetch('./data/DFO21_damages_wt_EMDAT21.csv')]);
-    countriesGeo = await geoRes.json();
+    const rawGeo = await geoRes.json();
 // Remove Antarctica from the features array
   countriesGeo = {
     ...rawGeo,
