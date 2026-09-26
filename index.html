@@ -445,27 +445,25 @@
 <script>
 (function() {
   const countEl = document.getElementById('visitor-count');
-  // Use a unique key namespace for your project
+  // Unique namespace and key for your application
   const NAMESPACE = 'flood_xml_portal_2026';
   const KEY = 'unique_visitors';
   
-  // Check if this browser has already been counted
   const hasVisited = localStorage.getItem('has_visited_flood_xml');
 
-  // If already visited, fetch current count without incrementing; otherwise increment (`/hit/`)
+  // Increment if new visitor (`/up`), otherwise read current count (`/get`)
   const endpoint = hasVisited 
-    ? `https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`
-    : `https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`;
+    ? `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}`
+    : `https://api.counterapi.dev/v1/${NAMESPACE}/${KEY}/up`;
 
   fetch(endpoint)
     .then(res => {
-      if (!res.ok) throw new Error('API request failed');
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       return res.json();
     })
     .then(data => {
-      if (data && typeof data.value === 'number') {
-        countEl.textContent = data.value.toLocaleString();
-        // Mark browser as counted
+      if (data && typeof data.count === 'number') {
+        countEl.textContent = data.count.toLocaleString();
         if (!hasVisited) {
           localStorage.setItem('has_visited_flood_xml', 'true');
         }
@@ -475,7 +473,6 @@
     })
     .catch(err => {
       console.error('Visitor Counter Error:', err);
-      // Display a graceful fallback rather than a fake number
       countEl.textContent = 'Unavailable';
     });
 })();
