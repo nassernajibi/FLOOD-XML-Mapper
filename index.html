@@ -455,45 +455,30 @@
 <script>
 (function() {
   const countEl = document.getElementById('visitor-count');
-  // Unique target identifier for your site
-  const siteUrl = 'flood-xml-portal.github.io';
-  const hasVisited = localStorage.getItem('has_visited_flood_xml');
+  
+  // Unique domain and key for your application
+  const namespace = 'flood-xml-portal.github.io';
+  const key = 'total_page_views';
 
-  // Hits.sh provides a clean JSON API endpoint ending in .json
-  const endpoint = `https://hits.sh/${siteUrl}.json`;
+  // Hits endpoint increments the counter on every call
+  const endpoint = `https://api.countapi.xyz/hit/${namespace}/${key}`;
 
   fetch(endpoint)
     .then(res => {
-      if (!res.ok) throw new Error('Network response failed');
+      if (!res.ok) throw new Error('Counter API error');
       return res.json();
     })
     .then(data => {
-      if (data && typeof data.hits === 'number') {
-        countEl.textContent = data.hits.toLocaleString();
-        if (!hasVisited) {
-          localStorage.setItem('has_visited_flood_xml', 'true');
-        }
+      if (data && typeof data.value === 'number') {
+        countEl.textContent = data.value.toLocaleString();
       } else {
-        countEl.textContent = '0';
+        countEl.textContent = '1';
       }
     })
     .catch(err => {
       console.error('Visitor Counter Error:', err);
-      // Fallback: fetch raw badge SVG directly if JSON is blocked by an ad-blocker
-      fetch(`https://hits.sh/${siteUrl}.svg`)
-        .then(res => res.text())
-        .then(svgText => {
-          const countMatch = svgText.match(/<text[^>]*>([0-9,]+)<\/text>/g);
-          if (countMatch && countMatch.length > 0) {
-            const rawVal = countMatch[countMatch.length - 1].replace(/<[^>]+>/g, '').trim();
-            countEl.textContent = rawVal;
-          } else {
-            countEl.textContent = '1';
-          }
-        })
-        .catch(() => {
-          countEl.textContent = '0';
-        });
+      // Display fallback instead of zero on blocked requests
+      countEl.textContent = '—';
     });
 })();
 
