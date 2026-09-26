@@ -45,9 +45,9 @@
       transition: all 0.3s ease;
     }
     #legend {
-  max-width: 260px;
-  padding: 14px;
-}
+      max-width: 260px;
+      padding: 14px;
+    }
     .topbar:hover, .legend:hover, .stats-card:hover {
       box-shadow: 0 8px 24px rgba(0,0,0,0.15), 0 2px 6px rgba(0,0,0,0.1);
     }
@@ -300,48 +300,49 @@
       font-size: 13px;
       line-height: 1.5;
     }
+
+    .bottom-right-widgets {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .info-link, .visitor-widget {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 8px 14px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 1px solid rgba(0,0,0,0.06);
+      font-size: 12px;
+      font-weight: 600;
+      color: #1976d2;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .info-link:hover {
+      background: #f1f8ff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
     
   @media (max-width: 768px) {
-
-    html, body {
-      overflow: auto;
-    }
-
-    .left-controls {
-      left: 10px;
-      top: 10px;
-      width: calc(100% - 20px);
-    }
-
-    .topbar, .legend, .stats-card {
-      padding: 14px;
-    }
-
-    #legend {
-      max-width: 100%;
-    }
-
-    .sidebar {
-      left: 10px;
-      right: 10px;
-      top: auto;
-      bottom: 10px;
-      width: auto;
-      max-height: 45vh;
-    }
-
-    .bottom-panel {
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
-      height: 220px;
-      padding: 14px 16px;
-    }
-
-    select, button {
-      padding: 12px;
-      font-size: 16px;
-    }
+    html, body { overflow: auto; }
+    .left-controls { left: 10px; top: 10px; width: calc(100% - 20px); }
+    .topbar, .legend, .stats-card { padding: 14px; }
+    #legend { max-width: 100%; }
+    .sidebar { left: 10px; right: 10px; top: auto; bottom: 10px; width: auto; max-height: 45vh; }
+    .bottom-panel { left: 10px; right: 10px; bottom: 10px; height: 220px; padding: 14px 16px; }
+    select, button { padding: 12px; font-size: 16px; }
   }
 </style>
 </head>
@@ -408,55 +409,21 @@
   <div style="height:220px; width:100%;"><canvas id="tsChart"></canvas></div>
 </div>
 
-<style>
-  .info-link {
-    position: absolute;
-    bottom: 75px; 
-    right: 15px;
-    z-index: 2000;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 8px 14px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border: 1px solid rgba(0,0,0,0.06);
-    text-decoration: none;
-    color: #1976d2;
-    font-size: 12px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s ease;
-  }
-  .info-link:hover {
-    background: #f1f8ff;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-  }
-</style>
-
-<a href="https://github.com/nassernajibi/FLOOD-XML" target="_blank" class="info-link">
-  <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
-    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-  </svg>
-  Project Documentation
-</a>
-
-<div style="position: absolute; bottom: 15px; right: 15px; z-index: 2000; 
-            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
-            padding: 10px 16px; border-radius: 10px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border: 1px solid rgba(0,0,0,0.06);
-            font-size: 12px; font-weight: 600; color: #1976d2;">
-  👁️ <span id="visitor-count">000</span> visitors
+<div class="bottom-right-widgets">
+  <a href="https://github.com/nassernajibi/FLOOD-XML" target="_blank" class="info-link">
+    <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+    </svg>
+    Project Documentation
+  </a>
+  <div class="visitor-widget">
+    👁️ <span id="visitor-count">000</span> visitors
+  </div>
 </div>
 
 <script>
 (function() {
   const countEl = document.getElementById('visitor-count');
-  
-  // Increments on every GET request
   const endpoint = 'https://api.counterapi.dev/v1/flood-xml-portal/hits/up';
 
   fetch(endpoint)
@@ -488,21 +455,19 @@
   map.setMaxBounds(worldBounds);
   map.options.maxBoundsViscosity = 1.0;
 
-  // 1. ADD THIS HERE: Create a custom pane for markers with a high z-index
-map.createPane('labels');
-map.getPane('labels').style.zIndex = 650; // Place above vector/raster data
-map.getPane('labels').style.pointerEvents = 'none';
+  map.createPane('labels');
+  map.getPane('labels').style.zIndex = 650;
+  map.getPane('labels').style.pointerEvents = 'none';
 
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
-  attribution: 'Tiles &copy; Esri',
-  maxZoom: 19,
-  pane: 'labels'
-}).addTo(map);
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri',
+    maxZoom: 19,
+    pane: 'labels'
+  }).addTo(map);
 
-  // 2. ADD THIS HERE: Make sure the eventMarkers LayerGroup is attached to the map
   eventMarkers.addTo(map);
 
-  const formatUSD = n => n ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact', maximumFractionDigits: 1 }).format(n) : "$0";
+  const formatUSD = n => (n && n > 0) ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact', maximumFractionDigits: 1 }).format(n) : "$0";
 
   function getStats(rowOrArray) {
     const vals = Array.isArray(rowOrArray) ? rowOrArray.map(r => BASE_MODELS.map(m => parseFloat(r[m]) || 0)).flat() : BASE_MODELS.map(m => parseFloat(rowOrArray[m]) || 0);
@@ -513,15 +478,15 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/Worl
   async function init() {
     const [geoRes, csvRes] = await Promise.all([fetch('./data/ne_10m_admin_0_countries.geojson'), fetch('./data/DFO21_damages_wt_EMDAT21.csv')]);
     const rawGeo = await geoRes.json();
-// Remove Antarctica from the features array
-  countriesGeo = {
-    ...rawGeo,
-    features: rawGeo.features.filter(f => 
-      f.properties.ADMIN !== 'Antarctica' && 
-      f.properties.ISO_A3 !== 'ATA' && 
-      f.properties.ADM0_A3 !== 'ATA'
-    )
-  };
+
+    countriesGeo = {
+      ...rawGeo,
+      features: rawGeo.features.filter(f => 
+        f.properties.ADMIN !== 'Antarctica' && 
+        f.properties.ISO_A3 !== 'ATA' && 
+        f.properties.ADM0_A3 !== 'ATA'
+      )
+    };
     fullData = Papa.parse(await csvRes.text(), { header: true, skipEmptyLines: true }).data;
 
     fullData.forEach(row => {
@@ -548,11 +513,11 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/Worl
     renderLegend(); updateMap();
   }
 
-function updateMap() {
+  function updateMap() {
     if (window.gLayer) map.removeLayer(window.gLayer);
     const yr = parseInt(el('yearSelect').value), mod = el('modelSelect').value;
     window.gLayer = L.geoJson(countriesGeo, {
-      pane: 'overlayPane', // ADD THIS line to lock country fills below z-index 650
+      pane: 'overlayPane',
       style: f => {
         const iso = ((f.properties.ISO_A3 && f.properties.ISO_A3 !== "-99") ? f.properties.ISO_A3 : f.properties.ADM0_A3) || NAME_TO_ISO[f.properties.ADMIN?.toLowerCase()];
         const rows = eventsByIso.get(iso)?.annual[yr] || [];
@@ -601,7 +566,7 @@ function updateMap() {
     `; 
   }
 
-function refreshUI() {
+  function refreshUI() {
     if (!selectedIso) return;
     const entry = eventsByIso.get(selectedIso), mod = el('modelSelect').value;
     
@@ -616,7 +581,7 @@ function refreshUI() {
           weight: 2, 
           fillColor: '#757575', 
           fillOpacity: 0.9,
-          pane: 'markerPane' // ADD THIS property here
+          pane: 'markerPane'
         })
         .addTo(eventMarkers).bindPopup(`
           <div style="font-family: inherit;">
@@ -633,17 +598,15 @@ function refreshUI() {
 
     const dataset = years.map(y => { 
         const rs = entry?.annual[y] || [];
-        if (rs.length === 0) return {total:0, min:0, max:0, count:0};
+        if (rs.length === 0) return {total: null, min: null, max: null, count: 0};
         
         if (mod === 'ensemble') {
-          // For ensemble: sum of medians for each event
           const total = rs.reduce((sum, r) => sum + getStats(r).med, 0);
           const stats = getStats(rs);
-          return {total, min: stats.min, max: stats.max, count: rs.length};
+          return {total: total || null, min: stats.min, max: stats.max, count: rs.length};
         } else {
-          // For individual models: sum of that model's predictions
           const total = rs.reduce((sum, r) => sum + (parseFloat(r[mod]) || 0), 0);
-          return {total, min: 0, max: 0, count: rs.length};
+          return {total: total || null, min: null, max: null, count: rs.length};
         }
     });
 
@@ -651,40 +614,37 @@ function refreshUI() {
 
     const whiskerPlugin = {
       id: 'whiskers',
-      afterDatasetsDraw(chart) {
-        const {ctx, scales: {x, y}} = chart;
+      afterDatasetsDraw(chartInstance) {
+        const {ctx, scales: {x, y}} = chartInstance;
         const drawWhiskers = el('modelSelect').value === 'ensemble';
         
         ctx.save();
         
-        // Draw points at end of bars
-        ctx.fillStyle = '#1976d2';
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 2;
         dataset.forEach((d, i) => {
-          if (d.total === 0) return;
+          if (!d.total) return;
           const xPos = x.getPixelForValue(years[i]);
           const yPos = y.getPixelForValue(d.total);
+
+          // Draw marker point
+          ctx.fillStyle = '#1976d2';
+          ctx.strokeStyle = '#fff';
+          ctx.lineWidth = 2;
           ctx.beginPath();
-          ctx.arc(xPos, yPos, 5, 0, 2 * Math.PI);
+          ctx.arc(xPos, yPos, 4, 0, 2 * Math.PI);
           ctx.fill();
           ctx.stroke();
-        });
-        
-        // Draw whiskers only in ensemble mode
-        if (drawWhiskers) {
-          ctx.strokeStyle = '#e53935'; 
-          ctx.lineWidth = 2;
-          dataset.forEach((d, i) => {
-            if (d.total === 0) return;
-            const xPos = x.getPixelForValue(years[i]);
-            const yMin = y.getPixelForValue(d.min || d.total);
-            const yMax = y.getPixelForValue(d.max || d.total);
+
+          // Draw whiskers
+          if (drawWhiskers && d.min !== null && d.max !== null) {
+            ctx.strokeStyle = '#e53935'; 
+            ctx.lineWidth = 1.5;
+            const yMin = y.getPixelForValue(d.min);
+            const yMax = y.getPixelForValue(d.max);
             ctx.beginPath(); ctx.moveTo(xPos, yMin); ctx.lineTo(xPos, yMax); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(xPos - 5, yMin); ctx.lineTo(xPos + 5, yMin); ctx.stroke();
-            ctx.beginPath(); ctx.moveTo(xPos - 5, yMax); ctx.lineTo(xPos + 5, yMax); ctx.stroke();
-          });
-        }
+            ctx.beginPath(); ctx.moveTo(xPos - 4, yMin); ctx.lineTo(xPos + 4, yMin); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(xPos - 4, yMax); ctx.lineTo(xPos + 4, yMax); ctx.stroke();
+          }
+        });
         
         ctx.restore();
       }
@@ -699,7 +659,6 @@ function refreshUI() {
           backgroundColor: '#1976d2',
           borderColor: '#0d47a1',
           borderWidth: 0,
-          borderRadius: 0,
           barThickness: 3
         }]
       },
@@ -712,58 +671,25 @@ function refreshUI() {
             ticks: { callback: v => formatUSD(v) },
             grid: { color: '#e0e0e0' }
           },
-          x: {
-            grid: { display: false }
-          }
+          x: { grid: { display: false } }
         },
         plugins: { 
           legend: { display: false },
-            title: {
-          display: true,
-        text: `${el('countryName').textContent}`,
-        font: {
-          size: 16,
-          weight: 'bold'
+          title: {
+            display: true,
+            text: `${el('countryName').textContent}`,
+            font: { size: 15, weight: 'bold' },
+            padding: { top: 5, bottom: 10 }
           },
-        padding: {
-          top: 5,
-            bottom: 10
-              }
-                  },
           tooltip: {
             backgroundColor: 'rgba(33, 33, 33, 0.95)',
             padding: 12,
             titleFont: { size: 14, weight: 'bold' },
             bodyFont: { size: 13 },
             callbacks: {
-              label: (context) => {
-                return `Damage: ${formatUSD(context.parsed.y)}`;
-              },
-              afterBody: (context) => {
-                const idx = context[0].dataIndex;
-                return `Events: ${dataset[idx].count}`;
-              }
+              label: (context) => `Damage: ${formatUSD(context.parsed.y)}`,
+              afterBody: (context) => `Events: ${dataset[context[0].dataIndex].count}`
             }
-          }
-        },
-        animation: {
-          onComplete: function() {
-            // Draw points after animation completes
-            const {ctx, scales: {x, y}} = this;
-            ctx.save();
-            ctx.fillStyle = '#1976d2';
-            ctx.strokeStyle = '#fff';
-            ctx.lineWidth = 2;
-            dataset.forEach((d, i) => {
-              if (d.total === 0) return;
-              const xPos = x.getPixelForValue(years[i]);
-              const yPos = y.getPixelForValue(d.total);
-              ctx.beginPath();
-              ctx.arc(xPos, yPos, 5, 0, 2 * Math.PI);
-              ctx.fill();
-              ctx.stroke();
-            });
-            ctx.restore();
           }
         }
       },
@@ -783,8 +709,7 @@ function refreshUI() {
         <span class="coord-text">📍 ${ev.lat}, ${ev.lon}</span>
       </div>`;
     }).join('');
-    
-// Formatting for Area and per-event averages
+
     const formatArea = n => {
       if (!n) return "0 km²";
       if (n >= 1e9) return (n / 1e9).toFixed(1) + "B km²";
