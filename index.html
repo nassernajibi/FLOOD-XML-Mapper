@@ -456,28 +456,19 @@
 (function() {
   const countEl = document.getElementById('visitor-count');
   
-  // Unique domain and key for your application
-  const namespace = 'flood-xml-portal.github.io';
-  const key = 'total_page_views';
-
-  // Hits endpoint increments the counter on every call
-  const endpoint = `https://api.countapi.xyz/hit/${namespace}/${key}`;
+  // Increments on every GET request
+  const endpoint = 'https://api.counterapi.dev/v1/flood-xml-portal/hits/up';
 
   fetch(endpoint)
-    .then(res => {
-      if (!res.ok) throw new Error('Counter API error');
-      return res.json();
-    })
+    .then(res => res.json())
     .then(data => {
-      if (data && typeof data.value === 'number') {
-        countEl.textContent = data.value.toLocaleString();
+      if (data && typeof data.count === 'number') {
+        countEl.textContent = data.count.toLocaleString();
       } else {
         countEl.textContent = '1';
       }
     })
-    .catch(err => {
-      console.error('Visitor Counter Error:', err);
-      // Display fallback instead of zero on blocked requests
+    .catch(() => {
       countEl.textContent = '—';
     });
 })();
