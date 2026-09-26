@@ -779,12 +779,26 @@ function refreshUI() {
       </div>`;
     }).join('');
     
+// Formatting for Area and per-event averages
+    const formatArea = n => {
+      if (!n) return "0 km²";
+      if (n >= 1e9) return (n / 1e9).toFixed(1) + "B km²";
+      if (n >= 1e6) return (n / 1e6).toFixed(1) + "M km²";
+      if (n >= 1e3) return (n / 1e3).toFixed(1) + "k km²";
+      return n.toLocaleString() + " km²";
+    };
+
+    const totalEvents = entry.events.length;
     const totalArea = entry.events.reduce((s,e)=>s+(parseFloat(e.area)||0),0);
     const totalDeaths = entry.events.reduce((s,e)=>s+(parseFloat(e.dead || e.deaths)||0),0);
+
+    const avgDeaths = totalEvents > 0 ? (totalDeaths / totalEvents).toFixed(1) : 0;
+    const avgArea = totalEvents > 0 ? (totalArea / totalEvents) : 0;
+
     el('countryStats').innerHTML = `
-        📊 Events: <span class="stat-val">${entry.events.length}</span><br>
-        💀 Total Deaths: <span class="stat-val">${totalDeaths.toLocaleString()}</span><br>
-        📏 Total Area: <span class="stat-val">${totalArea.toLocaleString()} km²</span>
+        📊 Events: <span class="stat-val">${totalEvents}</span><br>
+        💀 Total Deaths: <span class="stat-val">${totalDeaths.toLocaleString()}</span> <span style="color: #666; font-size: 12px;">(${avgDeaths} per event)</span><br>
+        📏 Total Area: <span class="stat-val">${formatArea(totalArea)}</span> <span style="color: #666; font-size: 12px;">(${formatArea(avgArea)} per event)</span>
     `;
   }
 
